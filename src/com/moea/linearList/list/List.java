@@ -1,27 +1,27 @@
 package com.moea.linearList.list;
 
 public interface List<E> {
-	//»ñÈ¡ÏßĞÔ±íÖĞµÄÔªËØ¸öÊı
+	//è¿”å›çº¿æ€§è¡¨çš„å¤§å°ï¼Œå³æ•°æ®å…ƒç´ çš„ä¸ªæ•°
 	public int getSize();
-	//ÅĞ¶ÏÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­æ˜¯å¦ä¸ºç©º
 	public boolean isEmpty();
-	//ÅĞ¶ÏÊÇ·ñ°üº¬ÔªËØ
+	//çº¿æ€§è¡¨æ˜¯å¦åŒ…å«å…ƒç´ e
 	public boolean contains(Object e);
-	//·µ»ØÔªËØÔÚÏßĞÔ±íÖĞµÄĞòºÅ
+	//å…ƒç´ eåœ¨çº¿æ€§è¡¨ä¸­çš„åºå·
 	public int indexOf(Object e);
-	//½«ÔªËØe²åÈëµ½ÏßĞÔ±íÖĞµÄiºÅÎ»ÖÃ
+	//å°†å…ƒç´ eæ’å…¥åˆ°çº¿æ€§è¡¨ä¸­ä½ç½®i 
 	public void insert(int i,Object e) throws Exception;
-	//½«ÔªËØe²åÈëµ½Ö¸¶¨ÔªËØÖ®Ç°
+	//å°†å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å‰
 	public boolean insertBefore(Object obj,Object e);
-	//½«ÔªËØe²åÈëµ½Ö¸¶¨ÔªËØÖ®ºó
+	//å°†å…ƒç´ eæ’å…¥åˆ°å…ƒç´ objä¹‹å
 	public boolean insertAfter(Object obj,Object e);
-	//É¾³ıÏßĞÔ±íÖĞĞòºÅÎªiµÄÔªËØ£¬²¢·µ»ØÕâ¸öÔªËØ
+	//ç§»é™¤ä¸‹æ ‡ä¸ºiçš„å…ƒç´ 
 	public Object remove(int i) throws Exception;
-	//É¾³ıÏßĞÔ±íÖĞµÄµÚÒ»¸öÓëeÏàÍ¬µÄÔªËØ
+	//ç§»é™¤å…ƒç´ e
 	public boolean remove(Object e) throws Exception;
-	//Ìæ»»ÏßĞÔ±íÖĞµÄµÚi¸öÔªËØÎªe£¬²¢·µ»Ø±»Ìæ»»µÄÔªËØ
+	//å°†ç¬¬iä¸ªå…ƒç´ æ›¿æ¢ä¸ºå…ƒç´ e
 	public Object replace(int i,Object e) throws Exception;
-	//·µ»ØÏßĞÔ±íÖĞĞòºÅÎªiµÄÔªËØ
+	//è·å–çº¿æ€§è¡¨ä¸­ç¬¬iä¸ªå…ƒç´ 
 	public Object get(int i) throws Exception;
 	
 }

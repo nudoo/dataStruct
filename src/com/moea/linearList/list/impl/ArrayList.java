@@ -5,12 +5,12 @@ import com.moea.linearList.strategy.Strategy;
 import com.moea.linearList.strategy.impl.DefaultStrategy;
 
 public class ArrayList<E> implements List<E> {
-	private final int LEN = 8;	//Ä¬ÈÏÊı×é³¤¶È
-	private Strategy strategy;	//Êı¾İÔªËØ±È½Ï²ßÂÔ
-	private int size;			//ÏßĞÔ±íÖĞÊı¾İÔªËØµÄ¸öÊı
-	private Object [] elements;	//Êı¾İÔªËØÊı×é
+	private final int LEN = 8;	//æ•°ç»„çš„é»˜è®¤å¤§å°
+	private Strategy strategy;	//æ•°æ®å…ƒç´ çš„æ¯”è¾ƒç­–ç•¥
+	private int size;			//çº¿æ€§è¡¨ä¸­æ•°æ®å…ƒç´ çš„ä¸ªæ•°
+	private Object [] elements;	//æ•°æ®å…ƒç´ æ•°ç»„
 	
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	public ArrayList(){
 		this(new DefaultStrategy());
 	}
@@ -20,19 +20,8 @@ public class ArrayList<E> implements List<E> {
 		size = 0;
 		elements = new Object[LEN];
 	}
-	@Override
-	public int getSize() {
-		// TODO Auto-generated method stub
-		return size;
-	}
+	
 
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return size==0;
-	}
-
-	@Override
 	public boolean contains(Object e) {
 		// TODO Auto-generated method stub
 		for(int i=0;i<size;i++){
@@ -43,7 +32,6 @@ public class ArrayList<E> implements List<E> {
 		return false;
 	}
 
-	@Override
 	public int indexOf(Object e) {
 		// TODO Auto-generated method stub
 		for(int i=0;i<size;i++){
@@ -51,18 +39,17 @@ public class ArrayList<E> implements List<E> {
 				return i;
 			}
 		}
-		return -1;//Ã»ÓĞ¸ÃÔªËØ£¬·µ»Ø-1
+		return -1;//Ã»ï¿½Ğ¸ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½-1
 	}
 
-	@Override
 	public void insert(int i, Object e) throws Exception {
 		// TODO Auto-generated method stub
 		if(i<0||i>size)			
-				throw new Exception("ÏÂ±êÔ½½çÒì³£");
-		//Èç¹ûÔªËØ¸öÊı´óÓÚÊı×é³¤¶È£¬À©Õ¹Êı×é
+				throw new Exception("ï¿½Â±ï¿½Ô½ï¿½ï¿½ï¿½ì³£");
+		//ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é³¤ï¿½È£ï¿½ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
 		if(size>=elements.length) 
 			expandSpace();
-		//½«ÏßĞÔ±íÖĞµÄÔªËØ£¬´Óelements[i]¿ªÊ¼ÒÀ´ÎºóÒÆÒ»Î»
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ğµï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½elements[i]ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½Ò»Î»
 		for(int j = size;j>i;j--){
 			elements[j] = elements[j-1];
 		}
@@ -70,25 +57,25 @@ public class ArrayList<E> implements List<E> {
 		size++;
 		return;
 	}
-	//À©Õ¹Êı×é
+	//ï¿½ï¿½Õ¹ï¿½ï¿½ï¿½ï¿½
 	private void expandSpace() {
 		// TODO Auto-generated method stub
-		//´´½¨Ò»¸öĞÂµÄÊı×é£¬³¤¶ÈÊÇÔ­À´µÄÁ½±¶
+		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		Object[] a = new Object[elements.length*2];
-		//½«Ô­Êı×éÖĞµÄÊı¾İ´æ·Åµ½ĞÂµÄÊı×éÖĞ
+		//ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½ï¿½İ´ï¿½Åµï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for(int i=0;i<elements.length;i++){
 			a[i] = elements[i];
 		}
-		//½«ĞÂÊı×éµÄÖ¸Õë¸³Öµ¸øelements
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë¸³Öµï¿½ï¿½elements
 		elements = a;
 	}
-	@Override
-	//½«ÔªËØe²åÈëµ½ÔªËØobjÖ®Ç°
+	
+	//ï¿½ï¿½Ôªï¿½ï¿½eï¿½ï¿½ï¿½ëµ½Ôªï¿½ï¿½objÖ®Ç°
 	public boolean insertBefore(Object obj, Object e) {
 		// TODO Auto-generated method stub
-		//»ñÈ¡ÔªËØobjµÄÏÂ±ê
+		//ï¿½ï¿½È¡Ôªï¿½ï¿½objï¿½ï¿½ï¿½Â±ï¿½
 		int i = indexOf(obj);
-		if(i<0) //i<0 ËµÃ÷ÏßĞÔ±íÖĞÃ»ÓĞ¶ÔÏóobj
+		if(i<0) //i<0 Ëµï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ã»ï¿½Ğ¶ï¿½ï¿½ï¿½obj
 			return false;
 		try {
 			insert(i,e);
@@ -99,7 +86,6 @@ public class ArrayList<E> implements List<E> {
 		return true;
 	}
 
-	@Override
 	public boolean insertAfter(Object obj, Object e) {
 		// TODO Auto-generated method stub
 		int i = indexOf(obj);
@@ -115,11 +101,10 @@ public class ArrayList<E> implements List<E> {
 		
 	}
 
-	@Override
 	public Object remove(int i) throws Exception {
 		// TODO Auto-generated method stub
 		if(i<0||i>size)
-			throw new Exception("ÏÂ±ê´íÎó");
+			throw new Exception("ï¿½Â±ï¿½ï¿½ï¿½ï¿½");
 		Object e = elements[i];
 		for(int j=i;j<size;j++){
 			elements[j] = elements[j+1];
@@ -127,7 +112,6 @@ public class ArrayList<E> implements List<E> {
 		return e;
 	}
 
-	@Override
 	public boolean remove(Object e) throws Exception {
 		// TODO Auto-generated method stub
 		int i = indexOf(e);
@@ -138,21 +122,27 @@ public class ArrayList<E> implements List<E> {
 					
 	}
 
-	@Override
 	public Object replace(int i, Object e) throws Exception {
 		// TODO Auto-generated method stub
-		if(i<0||i>=size) throw new Exception("ÏÂ±êÔ½½çÒì³£");
+		if(i<0||i>=size) throw new Exception("ï¿½Â±ï¿½Ô½ï¿½ï¿½ï¿½ì³£");
 		Object obj = elements[i];
 		elements[i] = e;
 		return obj;
 	}
 
-	@Override
 	public Object get(int i) throws Exception {
 		// TODO Auto-generated method stub
-		if(i<0||i>=size) throw new Exception("ÏÂ±êÔ½½çÒì³£");
+		if(i<0||i>=size) throw new Exception("ï¿½Â±ï¿½Ô½ï¿½ï¿½ï¿½ì³£");
 		
 		return elements[i];
+	}
+	public int getSize() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
