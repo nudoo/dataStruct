@@ -2,10 +2,10 @@ package com.moea.linearList.node.impl;
 
 import com.moea.linearList.node.Node;
 /**
- * 双向链表节点定义：
- * 	element 代表数据域
- * 	pre 代表直接前驱结点的引用
- * 	next 代表直接俄后继结点的引用
+ * 鍙屽悜閾捐〃缁撶偣
+ * 	element 缁撶偣鐨勬暟鎹煙
+ * 	pre 鍓嶉┍缁撶偣
+ * 	next 鍚庣户缁撶偣
  * @author Administrator
  *
  */
@@ -13,7 +13,7 @@ public class DLNode implements Node {
 	private Object element;
 	private DLNode pre;
 	private DLNode next;
-	//构造函数
+	//鏋勯�犲櫒
 	public DLNode(){
 		
 	}
@@ -24,13 +24,13 @@ public class DLNode implements Node {
 		this.next = next;
 	}
 	
-	@Override
+	
 	public Object getData() {
 		// TODO Auto-generated method stub
 		return element;
 	}
 
-	@Override
+	
 	public void setData(Object e) {
 		// TODO Auto-generated method stub
 		element = e;

@@ -2,18 +2,17 @@ package com.moea.linearList.node.impl;
 
 import com.moea.linearList.node.Node;
 /**
- * µ¥Á´±íµÄ½Úµã¶¨Òå£º
- * 	element ´ú±í¸Ã½ÚµãÖĞµÄÊı¾İ£¬¼´Êı¾İÓò£»
- * 	nextNode ´ú±í¶ÔÆäÖ±½Óºó¼Ì½ÚµãµÄÒıÓÃ£¬¼´Ö¸ÕëÓò¡£
+ * å•å‘é“¾è¡¨ç»“ç‚¹
+ * element æ•°æ®åŸŸ
+ * nextNode æŒ‡é’ˆåŸŸ
  * 
- * @author Administrator
- *
+ * @author moea
  */
 public class SLNode implements Node {
 	private Object element;
 	private SLNode nextNode;
 	
-	//¹¹Ôìº¯Êı
+	//æ„é€ æ–¹æ³•
 	public SLNode(){
 		
 	}
@@ -23,13 +22,11 @@ public class SLNode implements Node {
 		this.nextNode = nextNode;
 	}
 
-	@Override
 	public Object getData() {
 		// TODO Auto-generated method stub
 		return element;
 	}
 
-	@Override
 	public void setData(Object e) {
 		// TODO Auto-generated method stub
 		element = e;

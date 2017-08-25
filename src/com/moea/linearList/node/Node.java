@@ -2,8 +2,8 @@ package com.moea.linearList.node;
 
 public interface Node {
 
-	//»ñÈ¡½ÚµãÊı¾İÓòÖĞµÄÊı¾İ
+	//è·å–ç»“ç‚¹æ•°æ®åŸŸ
 	public Object getData();
-	//ÉèÖÃ½ÚµãÊı¾İÓòÖĞµÄÊı¾İ
+	//è®¾ç½®ç»“ç‚¹æ•°æ®åŸŸ
 	public void setData(Object e);
 }

@@ -6,11 +6,11 @@ import com.moea.linearList.strategy.Strategy;
 
 public class LinkedList<E> implements List<E> {
 
-	private Strategy strategy;	//Êı¾İÔªËØ±È½Ï²ßÂÔ
-	private SLNode head;		//µ¥Á´±íÍ·½ÚµãµÄÒıÓÃ
-	private int size;			//ÏßĞÔ±íÖĞÊı¾İÔªËØµÄ¸öÊı
+	private Strategy strategy;	//å¯¹è±¡æ¯”è¾ƒç­–ç•¥
+	private SLNode head;		//å¤´ç»“ç‚¹
+	private int size;			//é“¾è¡¨é•¿åº¦
 	
-	//»ñÈ¡Êı¾İÔªËØeµÄÇ°Çı½áµã
+	//å¾—åˆ°å…ƒç´ çš„å‰é©±ç»“ç‚¹
 	public SLNode getPreNode(Object e){
 		SLNode p = head;
 		while(p.getNextNode()!=null){
@@ -22,7 +22,7 @@ public class LinkedList<E> implements List<E> {
 		}
 		return null;
 	}
-	//»ñÈ¡ĞòºÅÎª 0<=i<sizeµÄÔªËØËùÔÚ½áµãµÄÇ°Çı½áµã 
+	//ç¬¬iä¸ªå…ƒç´ çš„å‰é©±ç»“ç‚¹
 	public SLNode getPreNode(int i){
 		SLNode p = head;
 		for(;i>0;i--){
@@ -30,19 +30,21 @@ public class LinkedList<E> implements List<E> {
 		}
 		return p;
 	}
-	@Override
+	//è·å–åºå·ä¸ºiçš„å…ƒç´ æ‰€åœ¨èŠ‚ç‚¹ï¼ˆ0<=i<size)
+	public SLNode getNode(int i){
+		SLNode p = getPreNode(i).getNextNode();
+		return p;
+	}
 	public int getSize() {
 		// TODO Auto-generated method stub
 		return size;
 	}
 
-	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return size==0;
 	}
 
-	@Override
 	public boolean contains(Object e) {
 		// TODO Auto-generated method stub
 		SLNode p = head.getNextNode();
@@ -54,8 +56,8 @@ public class LinkedList<E> implements List<E> {
 		return false;
 	}
 
-	@Override
-	//·µ»ØÔªËØÔÚÁ´±íÖĞµÄÏÂ±ê
+	
+	//è·å–å…ƒç´ eåœ¨çº¿æ€§è¡¨ä¸­çš„åºå·
 	public int indexOf(Object e) {
 		// TODO Auto-generated method stub
 		SLNode p = head.getNextNode();
@@ -71,15 +73,16 @@ public class LinkedList<E> implements List<E> {
 		return -1;
 	}
 
-	@Override
-	//½«Êı¾İÔªËØ²åÈëµ½ÏßĞÔ±íÖĞÏÂ±êÎªiµÄÎ»ÖÃ
+	
+	//å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°çº¿æ€§è¡¨ä¸­iå·ä½ç½®
 	public void insert(int i, Object e) throws Exception {
 		// TODO Auto-generated method stub
 		/**
-		 * ÈÃiµÄÇ°Çı½áµãÖ¸ÏòĞÂ¼ÓµÄ½Úµã,ĞÂ½ÚµãÖ¸ÏòÔ­À´µÄ½Úµãi
+		 *i>=0&&i<=size
+		 *		 
 		 */
 		if(i<0||i>size) 
-			throw new Exception("ÏÂ±êÒì³£");
+			throw new Exception("ä¸‹æ ‡è¶Šç•Œ");
 		SLNode p = getPreNode(i);
 		SLNode q = new SLNode(e, p.getNextNode());
 		p.setNextNode(q);
@@ -87,9 +90,8 @@ public class LinkedList<E> implements List<E> {
 		
 	}
 
-	@Override
 	public boolean insertBefore(Object obj, Object e) {
-		// ½«ÔªËØe²åÈëµ½ÔªËØobjectÇ°Ãæ
+		// å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°æ•°æ®å…ƒç´ objä¹‹å‰
 		SLNode p = getPreNode(obj);
 		if(p!=null){
 			SLNode q = new SLNode(e, p.getNextNode());
@@ -100,9 +102,8 @@ public class LinkedList<E> implements List<E> {
 		return false;
 	}
 
-	@Override
 	public boolean insertAfter(Object obj, Object e) {
-		// ½«ÔªËØe²åÈëµ½ÔªËØobjectºóÃæ
+		// å°†æ•°æ®å…ƒç´ eæ’å…¥åˆ°æ•°æ®å…ƒç´ objä¹‹å
 		SLNode p = getPreNode(obj).getNextNode();
 		if(p!=null){
 			SLNode q = new SLNode(e,p.getNextNode());
@@ -113,31 +114,45 @@ public class LinkedList<E> implements List<E> {
 		return false;
 	}
 
-	@Override
 	public Object remove(int i) throws Exception {
-		// ÈÃiµÄÇ°Çı½áµãpÖ¸ÏòiµÄºó¼Ì½áµã
+		// åˆ é™¤çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„å…ƒç´ ï¼Œå¹¶è¿”å›è¿™ä¸ªå…ƒç´ 
 		SLNode p = getPreNode(i);
 		SLNode q = p.getNextNode();
 		p.setNextNode(q.getNextNode());
 		return q.getData();
 	}
 
-	@Override
 	public boolean remove(Object e) throws Exception {
-		// TODO Auto-generated method stub
+		// åˆ é™¤çº¿æ€§è¡¨ä¸­ç¬¬ä¸€ä¸ªä¸eç›¸åŒçš„å…ƒç´ 
+		SLNode p = getPreNode(e);
+		if(p!=null){
+			SLNode q = p.getNextNode();
+			p.setNextNode(q.getNextNode());
+			size--;
+			return true;
+		}
 		return false;
 	}
 
-	@Override
 	public Object replace(int i, Object e) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// æ›¿æ¢çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„å…ƒç´ ä¸ºeï¼Œè¿”å›åŸæ¥çš„æ•°æ®å…ƒç´ 
+		if (i<0||i>size) {
+			System.out.println("é”™è¯¯ï¼Œä¸‹æ ‡è¶Šç•Œ");
+		}
+		SLNode p = getPreNode(i).getNextNode();
+		Object old = p.getData();
+		p.setData(e);
+		
+		return old;
 	}
 
-	@Override
 	public Object get(int i) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		// è¿”å›çº¿æ€§è¡¨ä¸­åºå·ä¸ºiçš„æ•°æ®å…ƒç´ 
+		if(i<0||i>=size){
+			System.out.println("é”™è¯¯ï¼Œä¸‹æ ‡è¶Šç•Œ");
+		}
+		Object e = getPreNode(i).getNextNode().getData();
+		return e;
 	}
 
 }
